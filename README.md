@@ -5,7 +5,7 @@ Unix Domains Sockets vs Localhost TCP Sockets
 This project is a NodeJS client and server that benchmarks the efficiency benefits of Unix Domain Sockets over TCP Localhost sockets. More information about this project can be found at: <blog url here>
 
 ## Running the benchmark
-This benchmark application uses the Python taskrun library for running the various benchmarks. More information about taskrun can be found at [https://github.com/nicmcd/taskrun]
+This benchmark application uses the Python taskrun library for running the various benchmarks. More information about taskrun can be found at [https://github.com/nicmcd/taskrun](https://github.com/nicmcd/taskrun).
 
 Before running the benchmarks, the server must be started:
 ```shell
@@ -40,4 +40,4 @@ python run.py
 This will take a significant amount of time to run. Mine took about a half hour. Go have fun and come back later.
 
 ## Interpreting the results
-The taskrun script generates a CSV file in the 'run' directory. Each benchmark point is run 10 times so it is best to average these. I used Microsoft Excel to import the CSV file and generate a graph. My benchmark was run on an Intel E5-2620v2 processor running Ubuntu 13.10.
+The taskrun script generates a CSV file in the 'run' directory. Each benchmark point is run 10 times so it is best to average these. I used Microsoft Excel to import the CSV file and generate a graph. My benchmark was run on an [Intel E5-2620 v2](http://ark.intel.com/products/75789/) processor running Ubuntu 13.10.
