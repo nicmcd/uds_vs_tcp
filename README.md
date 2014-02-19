@@ -8,35 +8,35 @@ This project is a NodeJS client and server that benchmarks the efficiency benefi
 This benchmark application uses the Python taskrun library for running the various benchmarks. More information about taskrun can be found at [https://github.com/nicmcd/taskrun]
 
 Before running the benchmarks, the server must be started:
-'''shell
+```shell
 node server.js <tcp port> <domain socket path>
-'''
+```
 
 For simplicity sake, the taskrun file is hardcoded to TCP port 5555 and domain socket path /tmp/uds, so you should start your server with:
-'''shell
+```shell
 node server.js 5555 /tmp/uds
-'''
+```
 
 A single client benchmark can be run with:
-'''shell
+```shell
 node client.js <port or path> <packet size> <packet count>
-'''
+```
 
 To match the client with the aforementioned server startup, run:
-'''shell
+```shell
 node client.js 5555 1000 100000
-'''
+```
 and
-'''shell
+```shell
 node client.js /tmp/uds 1000 100000
-'''
+```
 
 Running both of these commands should show that for 1k packets repeated 100,000 times, Unix domain sockets beat localhost TCP sockets by about 3x.
 
 The full benchmark analysis is run with:
-'''shell
+```shell
 python run.py
-'''
+```
 This will take a significant amount of time to run. Mine took about a half hour. Go have fun and come back later.
 
 ## Interpreting the results
