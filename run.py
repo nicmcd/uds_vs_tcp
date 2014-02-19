@@ -1,6 +1,7 @@
 import taskrun
+import os
 
-POWER = 16
+POWER = 15
 RUNS = 10
 PACKETS_PER_RUN = 100000
 
@@ -10,14 +11,14 @@ manager = taskrun.Task.Manager(
     runTasks = True,
     showProgress = True)
 
-DIR = "run"
+DIR = "sims"
 mkdir = manager.task_new('dir', 'rm -rI ' + DIR + '; mkdir ' + DIR)
 
 def makeName(stype, size, run):
     return stype + '_size' + str(size) + '_run' + str(run)
 
 def makeCommand(port_or_path, size, name):
-    return 'taskset 2 node client.js ' + port_or_path + ' ' + str(size) + ' ' + str(PACKETS_PER_RUN) + \
+    return 'node client.js ' + port_or_path + ' ' + str(size) + ' ' + str(PACKETS_PER_RUN) + \
         ' | grep millis | awk \'{printf "%s, ", $2}\' > ' + os.path.join(DIR, name)
 
 barrier1 = manager.task_new('barrier1', 'sleep 0')
@@ -51,7 +52,7 @@ for exp in range(0,POWER):
     cmd += 'echo -n \'UDS Size ' + str(size) + ', \' >> ' + filename + '; '
     for run in range(0, RUNS):
         name = makeName('uds', size, run)
-        cmd += 'cat ' + name + ' >> ' + filename + '; '
+        cmd += 'cat ' + os.path.join(DIR, name) + ' >> ' + filename + '; '
     cmd += 'echo \'\' >> ' + filename + '; '
 uds_task = manager.task_new('UDS to CSV', cmd)
 uds_task.dependency_is(hdr_task)
@@ -63,7 +64,7 @@ for exp in range(0,POWER):
     cmd += 'echo -n \'TCP Size ' + str(size) + ', \' >> ' + filename + '; '
     for run in range(0, RUNS):
         name = makeName('tcp', size, run)
-        cmd += 'cat ' + name + ' >> ' + filename + '; '
+        cmd += 'cat ' + os.path.join(DIR, name) + ' >> ' + filename + '; '
     cmd += 'echo \'\' >> ' + filename + '; '
 tcp_task = manager.task_new('TCP to CSV', cmd)
 tcp_task.dependency_is(uds_task)
