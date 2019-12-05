@@ -2,7 +2,7 @@ Unix Domains Sockets vs Localhost TCP Sockets
 ==========
 
 ## Introduction
-This project is a NodeJS client and server that benchmarks the efficiency benefits of Unix Domain Sockets over TCP Localhost sockets. More information about this project can be found at: <blog url here>
+This project is a NodeJS client and server that benchmarks the efficiency benefits of Unix Domain Sockets over TCP Localhost sockets. More information about this project can be found [here](https://nicisdigital.wordpress.com/2014/03/03/unix-domain-sockets-vs-loopback-tcp-sockets/).
 
 ## Running the benchmark
 This benchmark application uses the Python taskrun library for running the various benchmarks. More information about taskrun can be found at [https://github.com/nicmcd/taskrun](https://github.com/nicmcd/taskrun).
